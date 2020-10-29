@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.UserMapper">
+    <insert id="insertUser" parameterType="User">
+        insert into user(id,username,email,password,statue,degree,is_online) values(#{id},#{username},#{email},#{password},#{statue},#{degree},#{is_online})
+    </insert>
+    <update id="update" parameterType="User">
+        update user set username=#{username},email=#{email},password=#{password},statue=#{statue},is_online=#{is_online},pic=#{pic} where id=#{id}
+    </update>
+    <select id="findAll" resultType="User">
+        select * from user
+    </select>
+    <select id="findById" parameterType="int" resultType="User">
+        select * from user where id=#{id}
+    </select>
+    <delete id="deleteById" parameterType="int">
+        delete * from user where id=#{id}
+    </delete>
+    <select id="findByUsernameAndPassword" parameterType="java.lang.String" resultType="User">
+        select * from user where username=#{username} and password=#{password}
+    </select>
+    <select id="isExitUserName" parameterType="string" resultType="string">
+        select username from user where username=#{username}
+    </select>
+    <select id="countALL" resultType="long">
+        select count(id) from user
+    </select>
+    <select id="findAllWork" parameterType="int" resultType="Work">
+        select * from `work` where user_id=#{user_id}
+    </select>
+</mapper>

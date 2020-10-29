@@ -1,0 +1,33 @@
+.b-wrap {
+    width: 999px;
+    margin: 0 auto;
+}
+.proxy-box {
+    min-height: 1000px;
+}
+.space-between {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+.item a {
+    color: #222;
+    font-size: 12px;
+    font-weight: normal;
+}
+.svg-icon {
+    margin-right: 6px;
+}
+.svg-icon {
+    width: 36px;
+    height: 36px;
+    vertical-align: middle;
+    fill: currentColor;
+}
+.l-con-span {
+    font-size: 22px;
+    position: relative;
+    top: 7px;
+}

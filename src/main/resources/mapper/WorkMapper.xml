@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.WorkMapper">
+    <insert id="insert" parameterType="Work">
+        insert into `work` (id,user_id,title,cover_pic,content,`time`,statue,focus,`type`,label_id,introduction)values (#{id},#{user_id},#{title},#{cover_pic},#{content},#{time},#{statue},#{focus},#{type},#{label_id},#{introduction})
+    </insert>
+    <select id="findById" parameterType="int" resultType="Work">
+        select * from `work` where id=#{id}
+    </select>
+    <delete id="deleteById" parameterType="Work">
+        delete * from `work` where id=#{id}
+    </delete>
+    <update id="update" parameterType="Work">
+       update work set user_id=#{user_id},title=#{title},cover_pic=#{cover_pic},content=#{content},`time`=#{time},statue=#{statue},focus=#{focus},`type`=#{type},label_id=#{label_id},introduction=#{introduction} where id=#{id}
+    </update>
+    <select id="countALL" resultType="long">
+        select count(id) from `work`
+    </select>
+    <select id="findLabel" resultType="Label">
+        select * from label;
+    </select>
+    <select id="findByLabelAndType" parameterType="int" resultType="Work">
+        select * from `work` where label_id=#{label_id} and `type`=#{type}
+    </select>
+    <select id="findByDescAndType" resultType="Work" parameterType="int">
+        select * from `work`  where label_id=#{label_id} and `type`=#{type}  order by  focus desc limit 10
+    </select>
+    <select id="findByDesc" resultType="Work" parameterType="int">
+        select * from `work` where `type`=#{type} order by focus desc
+    </select>
+    <select id="findCommentNum" resultType="long" parameterType="int">
+        select count(vid) from `comment` where vid=#{vid}
+    </select>
+    <select id="findAllTypeDesc" parameterType="int" resultType="Work">
+        select * from `work` where type=#{type} and focus>0 order by focus desc limit 10
+    </select>
+    <select id="findOwner" parameterType="int" resultType="User">
+        select * from `user` where id=#{id}
+    </select>
+    <select id="findFocusNum" resultType="long">
+        select count(*) from focus where vid=#{vid} and type=#{type}
+    </select>
+    <select id="findByTitle" parameterType="java.lang.String" resultType="Work">
+        select * from `work` where title like "%"#{title}"%"
+    </select>
+</mapper>

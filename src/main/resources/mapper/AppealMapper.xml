@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.AppealMapper">
+<insert id="insert" parameterType="Appeal">
+        insert into appeal (id,user_id,appealed_id,type,statues,content)values (#{id},#{user_id},#{appealed_id},#{type},#{statues},#{content})
+    </insert>
+<update id="update" parameterType="Appeal">
+        update appeal set user_id=#{user_id},appealed_id=#{appealed_id},type=#{typr},statues=#{statues},content=#{content} where id=#{id}
+    </update>
+<select id="findAll" resultType="Appeal">
+        select * from appeal
+    </select>
+<select id="findById" parameterType="int" resultType="Appeal">
+        select * from appeal where id=#{id}
+    </select>
+<delete id="deleteById" parameterType="Appeal">
+        delete * from appeal where id=#{id}
+    </delete>
+</mapper>

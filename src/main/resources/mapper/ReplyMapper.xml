@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ReplyMapper">
+    <insert id="insert" parameterType="Reply">
+        insert into reply (id,comment_id,replyor_id,content,`time`,focus,statue) values (#{id},#{comment_id},#{replyor_id},#{content},#{time},#{focus},#{statue})
+    </insert>
+    <select id="findById" parameterType="int" resultType="Reply">
+        select * from reply where id=#{id}
+    </select>
+    <select id="findBYComment" parameterType="int" resultType="Reply">
+        select * from reply where comment_id=#{comment_id} order by `time` desc
+    </select>
+    <delete id="deleteById" parameterType="int">
+        delete * from reply where id=#{id}
+    </delete>
+    <update id="update" parameterType="Reply">
+       update reply set comment_id=#{comment_id},replyor_id=#{replyor_id},content=#{content},`time`=#{time},focus=#{focus},statue=#{statue} where id=#{id}
+    </update>
+    <select id="findFocusNum" resultType="long">
+        select count(*) from focus where vid=#{vid} and `type`=#{type}
+    </select>
+</mapper>
